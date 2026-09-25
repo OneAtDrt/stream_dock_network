@@ -115,8 +115,8 @@ If you use a VPN or proxy that only covers some traffic, services can see differ
 ## Install
 
 ```sh
-git clone https://github.com/OneAtDrt/stream_deck_network.git
-cd stream_deck_network
+git clone https://github.com/OneAtDrt/stream_dock_network.git
+cd stream_dock_network
 ./install.sh
 ```
 
