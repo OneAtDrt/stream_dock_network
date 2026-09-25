@@ -22,6 +22,30 @@ const COPIED_MS = 1500;
 const RING_DELAY_MS = 800;
 const RING_REASSERT_MS = 60000;
 const RING_COLORS = { online: [0x19, 0xfa, 0x1f], slow: [255, 140, 0], offline: [255, 0, 0] };
+// Last connection colour, kept across page switches and restarts (Stream Dock repaints the rings with
+// the app colours then), so the knob lights up at once instead of staying dark until the first check.
+const LAST_RING_FILE = path.join(require('node:os').tmpdir(), 'oneatdrt-network-ring.json');
+const LAST_RING_MAX_AGE_MS = 60 * 60 * 1000;
+let lastKnownRing = readLastRing();
+
+function readLastRing() {
+  try {
+    const saved = JSON.parse(fs.readFileSync(LAST_RING_FILE, 'utf8'));
+    return Array.isArray(saved.rgb) && Date.now() - saved.at < LAST_RING_MAX_AGE_MS ? saved : null;
+  } catch {
+    return null;
+  }
+}
+
+function rememberRing(rgb) {
+  if (lastKnownRing && lastKnownRing.rgb.join(',') === rgb.join(',') && Date.now() - lastKnownRing.at < RING_REASSERT_MS) return;
+  lastKnownRing = { rgb, at: Date.now() };
+  try {
+    fs.writeFileSync(LAST_RING_FILE, JSON.stringify(lastKnownRing));
+  } catch {
+    // Best effort: the in-memory copy still covers page switches.
+  }
+}
 const LOG_FILE = path.join(__dirname, 'log', 'plugin.log');
 
 const startup = parseStartupArgs(process.argv);
@@ -66,6 +90,7 @@ ws.on('message', (raw) => {
     log(`appear ${kind} ${payload.controller} at ${JSON.stringify(payload.coordinates)}`);
     subscribeContext(context);
     paint(context);
+    if (kind === 'knob' && knobIndex >= 0) scheduleRings();
     return;
   }
 
@@ -333,8 +358,10 @@ function paintRings() {
   const now = Date.now();
   for (const item of contexts.values()) {
     if (item.kind !== 'knob' || item.knobIndex < 0) continue;
-    const rgb = RING_COLORS[stateOf(item)];
-    // Unknown (no results yet): leave the ring as it is.
+    let rgb = RING_COLORS[stateOf(item)];
+    if (rgb) rememberRing(rgb);
+    // No results yet (just appeared / restarted): show the last known colour if it's recent.
+    else if (lastKnownRing && Date.now() - lastKnownRing.at < LAST_RING_MAX_AGE_MS) rgb = lastKnownRing.rgb;
     if (!rgb) continue;
     const key = rgb.join(',');
     if (key === item.lastRing && now - item.ringAt < RING_REASSERT_MS) continue;

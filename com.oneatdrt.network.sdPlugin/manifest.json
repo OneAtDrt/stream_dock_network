@@ -97,7 +97,7 @@
   "Description": "Network status with external IP, ping to your own list of hosts, and live download/upload speed.",
   "Category": "Network",
   "CategoryIcon": "static/icon.svg",
-  "Version": "0.1.0",
+  "Version": "0.1.1",
   "URL": "https://github.com/OneAtDrt/stream_dock_network",
   "OS": [
     {
