@@ -1,0 +1,5 @@
+node_modules/
+log/
+.omc/
+.DS_Store
+design/

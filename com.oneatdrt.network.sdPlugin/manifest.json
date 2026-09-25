@@ -1,0 +1,114 @@
+{
+  "Actions": [
+    {
+      "Icon": "static/knob.svg",
+      "Name": "Network",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/knob.svg",
+          "TitleAlignment": "bottom",
+          "FontSize": "10"
+        }
+      ],
+      "Settings": {},
+      "Controllers": [
+        "Knob",
+        "Keypad"
+      ],
+      "PropertyInspectorPath": "propertyInspector/index.html",
+      "UserTitleEnabled": false,
+      "SupportedInMultiActions": false,
+      "Tooltip": "Status, ping and speed on one knob. Turn: next page. Press: the page's action (copy IP / ping now / bytes ↔ bits). Ring: green online, amber slow, red offline.",
+      "UUID": "com.oneatdrt.network.knob"
+    },
+    {
+      "Icon": "static/status.svg",
+      "Name": "Network Status",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/status.svg",
+          "TitleAlignment": "bottom",
+          "FontSize": "10"
+        }
+      ],
+      "Settings": {},
+      "Controllers": [
+        "Knob",
+        "Keypad"
+      ],
+      "PropertyInspectorPath": "propertyInspector/index.html",
+      "UserTitleEnabled": false,
+      "SupportedInMultiActions": false,
+      "Tooltip": "Online/offline, external IP, country and ISP. Press: copy the IP and refresh.",
+      "UUID": "com.oneatdrt.network.status"
+    },
+    {
+      "Icon": "static/ping.svg",
+      "Name": "Ping",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/ping.svg",
+          "TitleAlignment": "bottom",
+          "FontSize": "10"
+        }
+      ],
+      "Settings": {},
+      "Controllers": [
+        "Knob",
+        "Keypad"
+      ],
+      "PropertyInspectorPath": "propertyInspector/index.html",
+      "UserTitleEnabled": false,
+      "SupportedInMultiActions": false,
+      "Tooltip": "Latency to your hosts, 3 per page. Turn: next/previous page. Press: ping now.",
+      "UUID": "com.oneatdrt.network.ping"
+    },
+    {
+      "Icon": "static/speed.svg",
+      "Name": "Speed",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/speed.svg",
+          "TitleAlignment": "bottom",
+          "FontSize": "10"
+        }
+      ],
+      "Settings": {},
+      "Controllers": [
+        "Knob",
+        "Keypad"
+      ],
+      "PropertyInspectorPath": "propertyInspector/index.html",
+      "UserTitleEnabled": false,
+      "SupportedInMultiActions": false,
+      "Tooltip": "Current download/upload rate of the active connection. Press: bytes ↔ bits.",
+      "UUID": "com.oneatdrt.network.speed"
+    }
+  ],
+  "SDKVersion": 1,
+  "Author": "OneAtDrt",
+  "Name": "Network",
+  "Icon": "static/icon.svg",
+  "CodePathMac": "plugin/index.js",
+  "Description": "Network status with external IP, ping to your own list of hosts, and live download/upload speed.",
+  "Category": "Network",
+  "CategoryIcon": "static/icon.svg",
+  "Version": "0.1.0",
+  "URL": "https://github.com/OneAtDrt/stream_deck_network",
+  "OS": [
+    {
+      "Platform": "mac",
+      "MinimumVersion": "10.11"
+    }
+  ],
+  "Software": {
+    "MinimumVersion": "3.10.191.0421"
+  },
+  "Nodejs": {
+    "Version": "20"
+  }
+}

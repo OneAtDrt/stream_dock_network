@@ -1,0 +1,13 @@
+{
+  "name": "network-streamdock",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "node-hid": "^3.4.0",
+    "ws": "^8.18.0"
+  }
+}

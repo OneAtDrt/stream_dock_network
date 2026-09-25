@@ -1,0 +1,86 @@
+:root {
+  --bg: #2d2d2d;
+  --field: #3d3d3d;
+  --border: #4a4a4a;
+  --text: #d8d8d8;
+  --dim: #969696;
+  --accent: #0a84ff;
+  --bad: #ef4444;
+}
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 12px -apple-system, Helvetica, Arial, sans-serif;
+}
+
+.pi { padding: 10px 12px 16px; }
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.row label {
+  flex: 0 0 92px;
+  color: var(--dim);
+  text-align: right;
+}
+
+.value {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+input, select, button {
+  font: inherit;
+  color: var(--text);
+  background: var(--field);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  height: 26px;
+  box-sizing: border-box;
+}
+
+input, select { padding: 0 6px; outline: none; }
+select.value { width: 100%; }
+input[type="number"] { width: 80px; }
+input:focus, select:focus { border-color: var(--accent); }
+input.invalid { border-color: var(--bad); }
+.suffix { color: var(--dim); }
+
+.heading {
+  margin: 14px 0 6px;
+  color: var(--dim);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.host-row {
+  display: grid;
+  grid-template-columns: 64px 1fr 26px;
+  gap: 6px;
+  margin: 6px 0;
+}
+
+.host-row input { width: 100%; min-width: 0; }
+
+button { cursor: pointer; padding: 0 10px; }
+button:hover:not(:disabled) { border-color: var(--accent); }
+button:disabled { opacity: 0.4; cursor: default; }
+button.remove { padding: 0; font-size: 16px; line-height: 1; }
+button.add { margin-top: 2px; }
+
+.note {
+  margin: 10px 0 0;
+  color: var(--dim);
+  line-height: 1.45;
+}
+
+[hidden] { display: none !important; }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+  <title>Network Settings</title>
+  <link rel="stylesheet" href="pi.css">
+  <script src="../plugin/settings.js"></script>
+  <script src="pi.js"></script>
+</head>
+<body>
+  <div class="pi" id="pi" hidden>
+    <div class="row">
+      <label for="interval">Check every</label>
+      <div class="value"><input type="number" id="interval" step="1" inputmode="numeric"><span class="suffix">s</span></div>
+    </div>
+
+    <section data-kind="status knob">
+      <div class="row">
+        <label for="ipService">IP service</label>
+        <select id="ipService" class="value">
+          <option value="auto">Auto — IP every check, country/ISP on change</option>
+          <option value="ipinfo">ipinfo.io — IP, country, ISP every check</option>
+          <option value="ip-api">ip-api.com — IP, country, ISP (HTTP)</option>
+          <option value="ipify">ipify.org — IP only</option>
+          <option value="icanhazip">icanhazip.com — IP only</option>
+        </select>
+      </div>
+      <div class="row" id="tokenRow">
+        <label for="ipinfoToken">ipinfo token</label>
+        <input type="password" id="ipinfoToken" class="value" placeholder="optional" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="row">
+        <label for="slowMs">Slow above</label>
+        <div class="value"><input type="number" id="slowMs" step="10" inputmode="numeric"><span class="suffix">ms</span></div>
+      </div>
+      <p class="note">Auto asks ipify for the IP each check and ipinfo.io for country and ISP only when the IP changes, which stays well inside ipinfo's free 50,000 requests a month. If a service fails, ipify and icanhazip are used for the IP.</p>
+      <p class="note" data-only="status">Online/offline also uses pings to the default hosts (US, EU, RU).</p>
+    </section>
+
+    <section data-kind="status ping knob">
+      <div class="row">
+        <label for="pingMethod">Ping method</label>
+        <select id="pingMethod" class="value">
+          <option value="icmp">ICMP (ping)</option>
+          <option value="tcp">TCP connect (port 443)</option>
+        </select>
+      </div>
+    </section>
+
+    <section data-kind="ping knob">
+      <div class="heading">HOSTS</div>
+      <div id="hosts"></div>
+      <button type="button" id="addHost" class="add">+ Add host</button>
+      <p class="note">Three hosts per page; turn the knob to page through. If a host doesn't answer ICMP ping but answers on TCP port 443, it's pinged over TCP from then on. Anycast addresses like 8.8.8.8 or 1.1.1.1 always answer from the nearest server, so they don't measure a region — use a host that lives there.</p>
+    </section>
+
+    <section data-kind="speed knob">
+      <div class="row" data-only="knob">
+        <label for="speedInterval">Speed every</label>
+        <div class="value"><input type="number" id="speedInterval" step="1" inputmode="numeric"><span class="suffix">s</span></div>
+      </div>
+      <div class="row">
+        <label for="unit">Units</label>
+        <select id="unit" class="value">
+          <option value="auto">Auto</option>
+          <option value="KB">Kilo (K)</option>
+          <option value="MB">Mega (M)</option>
+          <option value="GB">Giga (G)</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="mode">Show as</label>
+        <select id="mode" class="value">
+          <option value="bytes">Bytes (MB/s)</option>
+          <option value="bits">Bits (Mbit/s)</option>
+        </select>
+      </div>
+      <p class="note">Press the key or knob (on the Speed page) to switch between bytes and bits.</p>
+      <p class="note" data-only="knob">Turn the knob to go through Status, Ping and Speed. Press does the current page's action. The ring shows the connection: green online, amber slow, red offline.</p>
+    </section>
+  </div>
+</body>
+</html>
