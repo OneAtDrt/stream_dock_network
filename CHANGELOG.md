@@ -5,8 +5,8 @@ All notable changes to this project. Versions follow [Semantic Versioning](https
 ## [v0.1.1](https://github.com/OneAtDrt/stream_dock_network/releases/tag/v0.1.1) — Ring after page switch
 
 ### Fixed
-* The Network knob ring stayed dark after a page switch or a Stream Dock restart until the first check finished (up to a minute). The plugin now remembers the last connection colour (also across restarts, in the temp folder, for up to 1 h) and repaints the ring as soon as the knob reappears; a fresh check corrects it within seconds
-* Files: `plugin/index.js`, `CHANGELOG.md`; version 0.1.1 in `manifest.json`, `package.json`, `package-lock.json`
+* The Network knob ring stayed dark after a page switch or a Stream Dock restart until the first check finished (up to a minute). The plugin now remembers the last connection colour (also across restarts, in the temp folder, for up to 1 h) and repaints the ring as soon as the knob reappears; a fresh check corrects it within seconds ([0d558b9](https://github.com/OneAtDrt/stream_dock_network/commit/0d558b91670f36e247b0655e8264a59bf85d8e8e))
+* Files: `plugin/index.js`, `CHANGELOG.md`; version 0.1.1 in `manifest.json`, `package.json`, `package-lock.json` ([0d558b9](https://github.com/OneAtDrt/stream_dock_network/commit/0d558b91670f36e247b0655e8264a59bf85d8e8e))
 
 ## [v0.1.0](https://github.com/OneAtDrt/stream_dock_network/releases/tag/v0.1.0) — Initial release
 
